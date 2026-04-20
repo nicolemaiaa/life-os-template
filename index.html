@@ -7,14 +7,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Life OS">
 <meta name="theme-color" content="#FAF7F4">
-<title>Life OS — Dual Goal Dashboard</title>
+<title>Life OS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --a:#9BBFB8;--a-l:rgba(155,191,184,0.15);--a-m:rgba(155,191,184,0.38);
-  --b:#C4896A;--b-l:rgba(196,137,106,0.15);--b-m:rgba(196,137,106,0.38);
+  --a:#9BBFB8;--a-l:rgba(155,191,184,0.15);--a-m:rgba(155,191,184,0.4);
+  --b:#C4896A;--b-l:rgba(196,137,106,0.15);--b-m:rgba(196,137,106,0.4);
   --gold:#D9A98A;--gold-l:rgba(217,169,138,0.15);
   --green:#7AAF8A;--green-l:rgba(122,175,138,0.15);
   --bg:#FAF7F4;--bg2:#FFFFFF;--bg3:#F2EDE8;--bg4:#E8E0D8;
@@ -26,6 +26,8 @@
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-family:var(--sans);font-size:13px}
 #app{height:100%;display:flex;flex-direction:column}
+
+/* TOP BAR */
 .topbar{padding:calc(var(--st) + 12px) 16px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg);border-bottom:0.5px solid var(--border)}
 .logo{display:flex;align-items:center;gap:8px}
 .logo-mark{width:26px;height:26px;border-radius:7px;background:var(--t1);display:flex;align-items:center;justify-content:center}
@@ -34,6 +36,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .topbar-r{text-align:right}
 .top-date{font-size:9px;color:var(--t3);letter-spacing:.07em;text-transform:uppercase}
 .top-day{font-size:9px;color:var(--t2);font-weight:300}
+
+/* TABS */
 .tabs{display:flex;border-bottom:0.5px solid var(--border);flex-shrink:0;background:var(--bg);overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:1;min-width:60px;padding:8px 4px;font-family:var(--sans);font-size:9px;font-weight:500;color:var(--t3);background:none;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
@@ -41,27 +45,39 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .tab.t1c{color:var(--a);border-bottom-color:var(--a)}
 .tab.t2c{color:var(--b);border-bottom-color:var(--b)}
 .tab.t3c{color:var(--green);border-bottom-color:var(--green)}
+
+/* SCROLL + PANES */
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .scroll::-webkit-scrollbar{display:none}
 .pane{display:none;padding:14px 14px calc(28px + var(--sb))}
 .pane.active{display:block;animation:fadeUp .16s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.hint{background:var(--gold-l);border:0.5px solid rgba(217,169,138,0.3);border-radius:var(--rsm);padding:11px 13px;margin-bottom:10px;font-size:11px;color:var(--t2);line-height:1.7}
-.hint strong{font-weight:500;color:var(--t1);display:block;margin-bottom:3px}
+
+/* CARDS */
 .card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
 .ct{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--t1);margin-bottom:12px;font-weight:400}
 .ct em{font-style:normal;color:var(--b)}
 .ct.la em{color:var(--a)}
 .sec{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--t3);margin:12px 0 6px}
 .sec:first-child{margin-top:0}
-.cds{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
-.cd{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--rsm);padding:12px;text-align:center}
+
+/* SETUP BANNER */
+.setup{background:var(--gold-l);border:0.5px solid rgba(217,169,138,0.35);border-radius:var(--rsm);padding:12px 14px;margin-bottom:10px;font-size:11px;color:var(--t2);line-height:1.7}
+.setup strong{font-weight:500;color:var(--t1);display:block;margin-bottom:4px;font-size:12px}
+
+/* COUNTDOWNS */
+.cds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.cd{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--rsm);padding:12px 10px;text-align:center;overflow:hidden}
 .cd.ca{border-color:var(--a-m);background:var(--a-l)}
 .cd.cb{border-color:var(--b-m);background:var(--b-l)}
-.cd-n{font-family:var(--serif);font-size:32px;font-style:italic;font-weight:400;line-height:1}
+.cd-n{font-family:var(--serif);font-size:30px;font-style:italic;font-weight:400;line-height:1;margin-bottom:2px}
 .cd-n.ca{color:var(--a)}.cd-n.cb{color:var(--b)}
-.cd-lbl{font-size:9px;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
-.cd-dt{font-size:9px;color:var(--t3);margin-top:1px}
+.cd-lbl{font-size:9px;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cd-lbl:focus{background:var(--bg4);color:var(--t1)}
+.cd-dt{font-size:9px;color:var(--t3);margin-top:2px;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.cd-dt:focus{background:var(--bg4);color:var(--t1)}
+
+/* DEEP WORK TIMER */
 .dw-wrap{background:var(--bg3);border-radius:var(--rsm);padding:14px;margin-bottom:10px;border:0.5px solid var(--border)}
 .dw-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .dw-lbl{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t1)}
@@ -77,9 +93,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .dw-dots{display:flex;gap:5px;margin-top:10px;justify-content:center}
 .dw-dot{width:10px;height:10px;border-radius:50%;background:var(--bg4);border:0.5px solid var(--border2)}
 .dw-dot.done{background:var(--b)}
+
+/* QUOTA */
 .qi{margin-bottom:10px}.qi:last-child{margin-bottom:0}
 .qt{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.ql{font-size:12px;color:var(--t1)}.qv{font-size:11px;color:var(--t3)}
+.ql{font-size:12px;color:var(--t1);outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.ql:focus{background:var(--bg3)}
+.qv{font-size:11px;color:var(--t3)}
 .qtr{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
 .qf{height:100%;border-radius:3px;transition:width .3s}
 .qfa{background:var(--a)}.qfb{background:var(--b)}
@@ -88,6 +108,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .qbtn:active{transform:scale(.95)}
 .qbtn.pa{background:var(--a-l);border-color:var(--a-m);color:var(--a)}
 .qbtn.pb{background:var(--b-l);border-color:var(--b-m);color:var(--b)}
+
+/* TASKS */
 .tr{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:0.5px solid var(--border);position:relative}
 .tr:last-of-type{border-bottom:none}
 .cb{width:17px;height:17px;border-radius:5px;border:0.5px solid var(--border2);flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;background:var(--bg3)}
@@ -100,7 +122,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .tt.done{text-decoration:line-through;color:var(--t3)}
 .tn2{font-size:10px;color:var(--t3);outline:none;padding:1px 3px;margin:-1px -3px;border-radius:3px;cursor:text;margin-top:1px}
 .tn2:focus{background:var(--bg3)}
-.tn2:empty::before{content:'note...';color:var(--t4);pointer-events:none}
+.tn2:empty::before{content:'add a note...';color:var(--t4);pointer-events:none}
 .tg2{font-size:9px;font-weight:500;padding:2px 6px;border-radius:8px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;margin-top:3px;display:inline-block}
 .tag-u{background:rgba(200,90,80,0.1);color:#b05040}.tag-n{background:var(--b-l);color:var(--b)}
 .tag-s{background:var(--gold-l);color:#a07840}.tag-l{background:var(--bg3);color:var(--t3)}
@@ -110,17 +132,41 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .db:active{color:#c05050}
 .ab{display:flex;align-items:center;gap:6px;padding:7px 2px;font-size:11px;color:var(--t3);cursor:pointer;border:none;background:none;font-family:var(--sans);width:100%;margin-top:2px}
 .plus{width:17px;height:17px;border-radius:5px;border:0.5px dashed var(--border2);display:flex;align-items:center;justify-content:center;font-size:13px}
+
+/* MILESTONES */
 .msi{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--border)}
 .msi:last-child{border-bottom:none}
 .msic{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px}
 .msb{flex:1}
-.mst{font-size:12px;color:var(--t1)}.mst.done{text-decoration:line-through;color:var(--t3)}
-.mss{font-size:10px;color:var(--t3);margin-top:1px}
+.mst{font-size:12px;color:var(--t1);outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.mst:focus{background:var(--bg3)}
+.mst.done{text-decoration:line-through;color:var(--t3)}
+.mss{font-size:10px;color:var(--t3);margin-top:2px;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.mss:focus{background:var(--bg3)}
+.mss:empty::before{content:'add a note...';color:var(--t4);pointer-events:none}
+
+/* WINS */
 .wi{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--border)}
 .wi:last-child{border-bottom:none}
 .wd{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
 .wt{font-size:12px;color:var(--t2);line-height:1.4;flex:1;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
 .wt:focus{background:var(--bg3);color:var(--t1)}
+
+/* THESIS */
+.thesis{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t2);line-height:1.8;outline:none;cursor:text;border-radius:4px;padding:2px 4px;margin:-2px -4px;min-height:48px}
+.thesis:focus{background:var(--bg3);color:var(--t1)}
+
+/* PROGRESS */
+.prog-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.prog-row:last-child{margin-bottom:0}
+.prog-lbl{font-size:11px;min-width:64px;font-weight:300;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.prog-lbl:focus{background:var(--bg3)}
+.prog-track{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;transition:width .35s}
+.pfa{background:var(--a)}.pfb{background:var(--b)}
+.prog-ct{font-size:11px;color:var(--t3);min-width:28px;text-align:right}
+
+/* TAG MODAL */
 .mbg{display:none;position:fixed;inset:0;background:rgba(44,36,32,.4);z-index:50;align-items:flex-end}
 .mbg.show{display:flex}
 .modal{background:var(--bg2);border-radius:16px 16px 0 0;padding:18px 16px calc(18px + var(--sb));width:100%;border-top:0.5px solid var(--border2)}
@@ -128,12 +174,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .topts{display:flex;gap:5px;flex-wrap:wrap}
 .tpick{font-size:9px;font-weight:500;padding:3px 9px;border-radius:8px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;border:0.5px solid var(--border2);background:var(--bg3);color:var(--t2)}
 .tpick:active{transform:scale(.94)}
+
 #ib{display:none;position:fixed;bottom:calc(14px + var(--sb));left:50%;transform:translateX(-50%);background:var(--bg2);border:0.5px solid var(--border2);border-radius:20px;padding:9px 16px;font-size:11px;color:var(--t2);white-space:nowrap;box-shadow:0 4px 20px rgba(44,36,32,.12);z-index:100;cursor:pointer}
 #ib.show{display:block}
 </style>
 </head>
 <body>
 <div id="app">
+
 <div class="topbar">
   <div class="logo">
     <div class="logo-mark">
@@ -150,117 +198,147 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
     <div class="top-day" id="top-day"></div>
   </div>
 </div>
+
 <div class="tabs">
   <button class="tab t0 active" onclick="showTab(0)" id="tab-0">Today</button>
   <button class="tab t1c" onclick="showTab(1)" id="tab-1">Goal A</button>
   <button class="tab t2c" onclick="showTab(2)" id="tab-2">Goal B</button>
   <button class="tab t3c" onclick="showTab(3)" id="tab-3">Wins</button>
 </div>
+
 <div class="scroll">
 
-<div class="pane active" id="pane-0">
-  <div class="hint">
-    <strong>Your Life OS — 3 things to set up</strong>
-    1. Rename Goal A + Goal B tabs (edit the HTML, search "Goal A")<br>
-    2. Set your deadline dates (search "dTo" in the script)<br>
-    3. Replace the default tasks in each tab with your own
-  </div>
-  <div class="cds">
-    <div class="cd ca"><div class="cd-n ca" id="cd-a">--</div><div class="cd-lbl" id="cd-a-lbl">Goal A</div><div class="cd-dt" id="cd-a-dt">set date</div></div>
-    <div class="cd cb"><div class="cd-n cb" id="cd-b">--</div><div class="cd-lbl" id="cd-b-lbl">Goal B</div><div class="cd-dt" id="cd-b-dt">set date</div></div>
-  </div>
-  <div class="dw-wrap">
-    <div class="dw-top"><span class="dw-lbl">Deep work</span><span class="dw-st" id="dw-st">Ready - 4 hours, no phone</span></div>
-    <div class="dw-time" id="dw-time">4:00:00</div>
-    <div class="dw-pt"><div class="dw-pf" id="dw-pf" style="width:0%"></div></div>
-    <div class="dw-btns">
-      <div class="dw-btn pr" id="dw-btn" onclick="dwToggle()">Start</div>
-      <div class="dw-btn" onclick="dwReset()">Reset</div>
-      <div class="dw-btn sg" onclick="dwDone()">Done</div>
-    </div>
-    <div class="dw-dots" id="dw-dots"></div>
-  </div>
-  <div class="card">
-    <div class="ct">Top 3 <em>today</em></div>
-    <div id="top3"></div>
-  </div>
-  <div class="card">
-    <div class="ct">Weekly <em>progress</em></div>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:7px">
-      <span style="font-size:11px;color:var(--a);min-width:68px;font-weight:300" id="prog-a-lbl">Goal A</span>
-      <div style="flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="height:100%;border-radius:2px;background:var(--a);transition:width .35s" id="prog-a" style="width:0%"></div></div>
-      <span style="font-size:11px;color:var(--t3);min-width:28px;text-align:right" id="pct-a">0/0</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span style="font-size:11px;color:var(--b);min-width:68px;font-weight:300" id="prog-b-lbl">Goal B</span>
-      <div style="flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="height:100%;border-radius:2px;background:var(--b);transition:width .35s" id="prog-b" style="width:0%"></div></div>
-      <span style="font-size:11px;color:var(--t3);min-width:28px;text-align:right" id="pct-b">0/0</span>
-    </div>
-  </div>
-</div>
+  <!-- TODAY -->
+  <div class="pane active" id="pane-0">
 
-<div class="pane" id="pane-1">
-  <div class="card">
-    <div class="ct la">Goal A <em>quota</em></div>
-    <div class="qi">
-      <div class="qt"><span class="ql" id="qa1-lbl">Metric 1</span><span class="qv" id="qv-qa1">0 / 5</span></div>
-      <div class="qtr"><div class="qf qfa" id="qf-qa1" style="width:0%"></div></div>
-      <div class="qbtns"><div class="qbtn" onclick="adj('qa1',-1)">-</div><div class="qbtn pa" onclick="adj('qa1',1)">+ add</div></div>
+    <div class="setup">
+      <strong>Welcome to your Life OS</strong>
+      Everything on this page is editable — tap any text to change it. Rename the tabs, set your deadlines, replace the tasks. Your changes save automatically.
     </div>
-    <div class="qi" style="margin-bottom:0">
-      <div class="qt"><span class="ql" id="qa2-lbl">Metric 2</span><span class="qv" id="qv-qa2">0 / 5</span></div>
-      <div class="qtr"><div class="qf qfa" id="qf-qa2" style="width:0%"></div></div>
-      <div class="qbtns"><div class="qbtn" onclick="adj('qa2',-1)">-</div><div class="qbtn pa" onclick="adj('qa2',1)">+ add</div></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="ct la">This week <em>Goal A</em></div>
-    <div id="tasks-a"></div>
-  </div>
-  <div class="card">
-    <div class="ct la">Goal A <em>milestones</em></div>
-    <div id="ms-a-list"></div>
-  </div>
-</div>
 
-<div class="pane" id="pane-2">
-  <div class="card">
-    <div class="ct">Goal B <em>quota</em></div>
-    <div class="qi">
-      <div class="qt"><span class="ql" id="qb1-lbl">Metric 1</span><span class="qv" id="qv-qb1">0 / 3</span></div>
-      <div class="qtr"><div class="qf qfb" id="qf-qb1" style="width:0%"></div></div>
-      <div class="qbtns"><div class="qbtn" onclick="adj('qb1',-1)">-</div><div class="qbtn pb" onclick="adj('qb1',1)">+ add</div></div>
+    <div class="cds">
+      <div class="cd ca">
+        <div class="cd-n ca" id="cd-a">--</div>
+        <div class="cd-lbl" id="cd-a-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('goalAName',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal A</div>
+        <div class="cd-dt" id="cd-a-dt" contenteditable="true" spellcheck="false" onblur="saveDeadline('a',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Format: YYYY-MM-DD">tap to set date</div>
+      </div>
+      <div class="cd cb">
+        <div class="cd-n cb" id="cd-b">--</div>
+        <div class="cd-lbl" id="cd-b-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('goalBName',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal B</div>
+        <div class="cd-dt" id="cd-b-dt" contenteditable="true" spellcheck="false" onblur="saveDeadline('b',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Format: YYYY-MM-DD">tap to set date</div>
+      </div>
     </div>
-    <div class="qi" style="margin-bottom:0">
-      <div class="qt"><span class="ql" id="qb2-lbl">Metric 2</span><span class="qv" id="qv-qb2">0 / 1</span></div>
-      <div class="qtr"><div class="qf qfb" id="qf-qb2" style="width:0%"></div></div>
-      <div class="qbtns"><div class="qbtn" onclick="adj('qb2',-1)">-</div><div class="qbtn pb" onclick="adj('qb2',1)">+ add</div></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="ct">This week <em>Goal B</em></div>
-    <div id="tasks-b"></div>
-  </div>
-  <div class="card">
-    <div class="ct">Goal B <em>milestones</em></div>
-    <div id="ms-b-list"></div>
-  </div>
-</div>
 
-<div class="pane" id="pane-3">
-  <div class="card">
-    <div class="ct">Momentum <em>already built</em></div>
-    <div id="wins"></div>
+    <div class="dw-wrap">
+      <div class="dw-top"><span class="dw-lbl">Deep work</span><span class="dw-st" id="dw-st">Ready — 4 hours, no phone</span></div>
+      <div class="dw-time" id="dw-time">4:00:00</div>
+      <div class="dw-pt"><div class="dw-pf" id="dw-pf" style="width:0%"></div></div>
+      <div class="dw-btns">
+        <div class="dw-btn pr" id="dw-btn" onclick="dwToggle()">Start</div>
+        <div class="dw-btn" onclick="dwReset()">Reset</div>
+        <div class="dw-btn sg" onclick="dwDone()">Done</div>
+      </div>
+      <div class="dw-dots" id="dw-dots"></div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Top 3 <em>today</em></div>
+      <div id="top3"></div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Weekly <em>progress</em></div>
+      <div class="prog-row">
+        <div class="prog-lbl" id="plbl-a" style="color:var(--a)" contenteditable="true" spellcheck="false" onblur="saveConfig('goalAName',this);syncLabels()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal A</div>
+        <div class="prog-track"><div class="prog-fill pfa" id="prog-a" style="width:0%"></div></div>
+        <span class="prog-ct" id="pct-a">0/0</span>
+      </div>
+      <div class="prog-row">
+        <div class="prog-lbl" id="plbl-b" style="color:var(--b)" contenteditable="true" spellcheck="false" onblur="saveConfig('goalBName',this);syncLabels()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal B</div>
+        <div class="prog-track"><div class="prog-fill pfb" id="prog-b" style="width:0%"></div></div>
+        <span class="prog-ct" id="pct-b">0/0</span>
+      </div>
+    </div>
+
   </div>
-  <div class="card">
-    <div class="ct"><em>The thesis</em></div>
-    <div style="font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t2);line-height:1.8" id="thesis-text">Write your thesis here — the one sentence that explains why both goals are worth it at the same time.</div>
+
+  <!-- GOAL A -->
+  <div class="pane" id="pane-1">
+    <div class="card">
+      <div class="ct la">Weekly <em>quota</em></div>
+      <div class="qi">
+        <div class="qt">
+          <span class="ql" id="qa1-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qa1lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 1</span>
+          <span class="qv" id="qv-qa1">0 / 5</span>
+        </div>
+        <div class="qtr"><div class="qf qfa" id="qf-qa1" style="width:0%"></div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qa1',-1)">−</div><div class="qbtn pa" onclick="adj('qa1',1)">+ add</div></div>
+      </div>
+      <div class="qi" style="margin-bottom:0">
+        <div class="qt">
+          <span class="ql" id="qa2-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qa2lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 2</span>
+          <span class="qv" id="qv-qa2">0 / 5</span>
+        </div>
+        <div class="qtr"><div class="qf qfa" id="qf-qa2" style="width:0%"></div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qa2',-1)">−</div><div class="qbtn pa" onclick="adj('qa2',1)">+ add</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct la">This week — <em>Goal A</em></div>
+      <div id="tasks-a"></div>
+    </div>
+    <div class="card">
+      <div class="ct la">Goal A <em>milestones</em></div>
+      <div id="ms-a"></div>
+    </div>
   </div>
-  <div class="card">
-    <div class="ct">On the <em>horizon</em></div>
-    <div id="horizon"></div>
+
+  <!-- GOAL B -->
+  <div class="pane" id="pane-2">
+    <div class="card">
+      <div class="ct">Weekly <em>quota</em></div>
+      <div class="qi">
+        <div class="qt">
+          <span class="ql" id="qb1-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qb1lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 1</span>
+          <span class="qv" id="qv-qb1">0 / 3</span>
+        </div>
+        <div class="qtr"><div class="qf qfb" id="qf-qb1" style="width:0%"></div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qb1',-1)">−</div><div class="qbtn pb" onclick="adj('qb1',1)">+ add</div></div>
+      </div>
+      <div class="qi" style="margin-bottom:0">
+        <div class="qt">
+          <span class="ql" id="qb2-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qb2lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 2</span>
+          <span class="qv" id="qv-qb2">0 / 1</span>
+        </div>
+        <div class="qtr"><div class="qf qfb" id="qf-qb2" style="width:0%"></div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qb2',-1)">−</div><div class="qbtn pb" onclick="adj('qb2',1)">+ add</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">This week — <em>Goal B</em></div>
+      <div id="tasks-b"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Goal B <em>milestones</em></div>
+      <div id="ms-b"></div>
+    </div>
   </div>
-</div>
+
+  <!-- WINS -->
+  <div class="pane" id="pane-3">
+    <div class="card">
+      <div class="ct">Momentum <em>already built</em></div>
+      <div id="wins"></div>
+    </div>
+    <div class="card">
+      <div class="ct"><em>The thesis</em></div>
+      <div class="thesis" id="thesis" contenteditable="true" spellcheck="false" onblur="saveConfig('thesis',this)" onkeydown="if(event.key==='Enter'&&event.shiftKey){event.preventDefault();this.blur()}">Write your thesis here — the one sentence that explains why both goals are worth it at the same time.</div>
+    </div>
+    <div class="card">
+      <div class="ct">On the <em>horizon</em></div>
+      <div id="horizon"></div>
+    </div>
+  </div>
 
 </div>
 </div>
@@ -274,88 +352,136 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 <div id="ib" onclick="installPWA()">+ Add to Home Screen</div>
 
 <script>
-// ── CUSTOMISE HERE ──────────────────────────────────────
-var CONFIG = {
-  goalA: { name: 'Goal A', deadline: [2026, 12, 31], deadlineLbl: 'Deadline', deadlineDt: 'set your date' },
-  goalB: { name: 'Goal B', deadline: [2027, 6, 30], deadlineLbl: 'Deadline', deadlineDt: 'set your date' },
-  qa1: { label: 'Metric 1', max: 5 },
-  qa2: { label: 'Metric 2', max: 5 },
-  qb1: { label: 'Metric 1', max: 3 },
-  qb2: { label: 'Metric 2', max: 1 },
-};
-// ───────────────────────────────────────────────────────
-
-var KEY = 'lifeos-template-v2';
-var DEF = {
-  top3: [
+var KEY='lifeos-tmpl-v3';
+var DEF={
+  top3:[
     {id:'t1',text:'Your most important Goal A task today',note:'',done:false,tag:'u'},
     {id:'t2',text:'Your most important Goal B task today',note:'',done:false,tag:'u'},
     {id:'t3',text:'One thing to ship or post',note:'Done is better than perfect.',done:false,tag:'s'},
   ],
-  tasksA: [
+  tasksA:[
     {id:'a1',text:'Define this week\'s Goal A priority',note:'',done:false,tag:'u'},
     {id:'a2',text:'Two hours of deep focused work',note:'',done:false,tag:'p'},
     {id:'a3',text:'Review progress against milestone',note:'',done:false,tag:'s'},
   ],
-  tasksB: [
+  tasksB:[
     {id:'b1',text:'Define this week\'s Goal B priority',note:'',done:false,tag:'u'},
     {id:'b2',text:'One conversation with someone in your space',note:'',done:false,tag:'n'},
-    {id:'b3',text:'Ship one small thing',note:'',done:false,tag:'s'},
+    {id:'b3',text:'Ship one small thing — fully done',note:'',done:false,tag:'s'},
   ],
-  msA: [
+  msA:[
     {id:'ma1',text:'First milestone',sub:'your first checkpoint',done:false},
     {id:'ma2',text:'Second milestone',sub:'',done:false},
     {id:'ma3',text:'The big one',sub:'',done:false},
   ],
-  msB: [
+  msB:[
     {id:'mb1',text:'First milestone',sub:'',done:false},
     {id:'mb2',text:'Second milestone',sub:'',done:false},
     {id:'mb3',text:'The big one',sub:'',done:false},
   ],
-  wins: [
-    'You started — that is already something',
-    'Add your first real win here',
-    'Add another win',
-  ],
-  horizon: [
+  wins:['You started — that is already something','Add your first real win here','Another win to celebrate'],
+  horizon:[
     {text:'Where you want to be in one year with Goal A',cat:'a'},
     {text:'Where you want to be in one year with Goal B',cat:'b'},
     {text:'Something personal you want to have done',cat:'life'},
   ],
-  quota: {qa1:0,qa2:0,qb1:0,qb2:0},
-  milestones: {},
-  dw: {sessions:0,date:''},
+  quota:{qa1:0,qa2:0,qb1:0,qb2:0},
+  qmax:{qa1:5,qa2:5,qb1:3,qb2:1},
+  milestones:{},
+  dw:{sessions:0,date:''},
+  config:{
+    goalAName:'Goal A',goalBName:'Goal B',
+    deadlineA:'',deadlineB:'',
+    deadlineADt:'tap to set date',deadlineBDt:'tap to set date',
+    qa1lbl:'Metric 1',qa2lbl:'Metric 2',
+    qb1lbl:'Metric 1',qb2lbl:'Metric 2',
+    thesis:'Write your thesis here — the one sentence that explains why both goals are worth it at the same time.',
+  },
 };
 
-var S = JSON.parse(localStorage.getItem(KEY)||'null') || JSON.parse(JSON.stringify(DEF));
+var S=JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(JSON.stringify(DEF));
+if(!S.config)S.config=JSON.parse(JSON.stringify(DEF.config));
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 
-// Apply config labels
-document.getElementById('tab-1').textContent = CONFIG.goalA.name;
-document.getElementById('tab-2').textContent = CONFIG.goalB.name;
-document.getElementById('cd-a-lbl').textContent = CONFIG.goalA.deadlineLbl;
-document.getElementById('cd-a-dt').textContent = CONFIG.goalA.deadlineDt;
-document.getElementById('cd-b-lbl').textContent = CONFIG.goalB.deadlineLbl;
-document.getElementById('cd-b-dt').textContent = CONFIG.goalB.deadlineDt;
-document.getElementById('prog-a-lbl').textContent = CONFIG.goalA.name;
-document.getElementById('prog-b-lbl').textContent = CONFIG.goalB.name;
-document.getElementById('qa1-lbl').textContent = CONFIG.qa1.label;
-document.getElementById('qa2-lbl').textContent = CONFIG.qa2.label;
-document.getElementById('qb1-lbl').textContent = CONFIG.qb1.label;
-document.getElementById('qb2-lbl').textContent = CONFIG.qb2.label;
+// DATES
+var now=new Date();
+var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+document.getElementById('top-date').textContent=now.getDate()+' '+MONS[now.getMonth()]+' '+now.getFullYear();
+document.getElementById('top-day').textContent=DAYS[now.getDay()];
 
-// Dates
-var now = new Date();
-var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-var MONS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-document.getElementById('top-date').textContent = now.getDate()+' '+MONS[now.getMonth()]+' '+now.getFullYear();
-document.getElementById('top-day').textContent = DAYS[now.getDay()];
-function dTo(y,m,d){return Math.max(0,Math.ceil((new Date(y,m-1,d)-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5));}
-document.getElementById('cd-a').textContent = dTo.apply(null,CONFIG.goalA.deadline);
-document.getElementById('cd-b').textContent = dTo.apply(null,CONFIG.goalB.deadline);
+function daysUntil(dateStr){
+  if(!dateStr)return null;
+  var parts=dateStr.split('-');
+  if(parts.length!==3)return null;
+  var d=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]));
+  var diff=Math.ceil((d-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+  return Math.max(0,diff);
+}
+function updateCountdowns(){
+  var da=daysUntil(S.config.deadlineA);
+  document.getElementById('cd-a').textContent=da!==null?da:'--';
+  var db=daysUntil(S.config.deadlineB);
+  document.getElementById('cd-b').textContent=db!==null?db:'--';
+}
 
-// Tabs
-var TCLS = ['t0','t1c','t2c','t3c'];
+// SAVE CONFIG
+function saveConfig(key,el){
+  S.config[key]=el.textContent.trim();
+  save();
+  syncLabels();
+}
+function saveDeadline(goal,el){
+  var val=el.textContent.trim();
+  // accept YYYY-MM-DD or DD/MM/YYYY or plain text
+  if(goal==='a'){S.config.deadlineA=val;S.config.deadlineADt=val;}
+  else{S.config.deadlineB=val;S.config.deadlineBDt=val;}
+  save();updateCountdowns();
+}
+function syncLabels(){
+  var an=S.config.goalAName||'Goal A';
+  var bn=S.config.goalBName||'Goal B';
+  // tab labels
+  document.getElementById('tab-1').textContent=an;
+  document.getElementById('tab-2').textContent=bn;
+  // countdown labels
+  var cla=document.getElementById('cd-a-lbl');if(cla&&document.activeElement!==cla)cla.textContent=an;
+  var clb=document.getElementById('cd-b-lbl');if(clb&&document.activeElement!==clb)clb.textContent=bn;
+  // progress labels
+  var pa=document.getElementById('plbl-a');if(pa&&document.activeElement!==pa)pa.textContent=an;
+  var pb=document.getElementById('plbl-b');if(pb&&document.activeElement!==pb)pb.textContent=bn;
+  // quota labels
+  var q;
+  q=document.getElementById('qa1-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qa1lbl||'Metric 1';
+  q=document.getElementById('qa2-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qa2lbl||'Metric 2';
+  q=document.getElementById('qb1-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qb1lbl||'Metric 1';
+  q=document.getElementById('qb2-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qb2lbl||'Metric 2';
+  // thesis
+  var th=document.getElementById('thesis');if(th&&document.activeElement!==th)th.textContent=S.config.thesis||DEF.config.thesis;
+}
+
+// RESTORE CONFIG
+function restoreConfig(){
+  var c=S.config;
+  document.getElementById('tab-1').textContent=c.goalAName||'Goal A';
+  document.getElementById('tab-2').textContent=c.goalBName||'Goal B';
+  document.getElementById('cd-a-lbl').textContent=c.goalAName||'Goal A';
+  document.getElementById('cd-b-lbl').textContent=c.goalBName||'Goal B';
+  document.getElementById('cd-a-dt').textContent=c.deadlineADt||'tap to set date';
+  document.getElementById('cd-b-dt').textContent=c.deadlineBDt||'tap to set date';
+  document.getElementById('plbl-a').textContent=c.goalAName||'Goal A';
+  document.getElementById('plbl-b').textContent=c.goalBName||'Goal B';
+  document.getElementById('qa1-lbl').textContent=c.qa1lbl||'Metric 1';
+  document.getElementById('qa2-lbl').textContent=c.qa2lbl||'Metric 2';
+  document.getElementById('qb1-lbl').textContent=c.qb1lbl||'Metric 1';
+  document.getElementById('qb2-lbl').textContent=c.qb2lbl||'Metric 2';
+  document.getElementById('thesis').textContent=c.thesis||DEF.config.thesis;
+  updateCountdowns();
+}
+restoreConfig();
+
+// TABS
+var TCLS=['t0','t1c','t2c','t3c'];
 function showTab(i){
   document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('active');});
   document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('t0','t1c','t2c','t3c','active');});
@@ -363,7 +489,7 @@ function showTab(i){
   document.getElementById('tab-'+i).classList.add(TCLS[i],'active');
 }
 
-// Deep work timer
+// DEEP WORK
 var DW_TOT=14400,dwInt=null,dwOn=false,dwSec=DW_TOT;
 var todayStr=now.toDateString();
 if(S.dw.date!==todayStr){S.dw.sessions=0;S.dw.date=todayStr;save();}
@@ -376,19 +502,19 @@ function dwRender(){
 }
 function dwToggle(){
   if(dwOn){clearInterval(dwInt);dwOn=false;document.getElementById('dw-btn').textContent='Resume';document.getElementById('dw-st').textContent='Paused';}
-  else{dwOn=true;document.getElementById('dw-btn').textContent='Pause';document.getElementById('dw-st').textContent='Running';
-    dwInt=setInterval(function(){if(dwSec>0){dwSec--;dwRender();}else{clearInterval(dwInt);dwOn=false;document.getElementById('dw-st').textContent='Done!';}},1000);}
+  else{dwOn=true;document.getElementById('dw-btn').textContent='Pause';document.getElementById('dw-st').textContent='Running — phone away';
+    dwInt=setInterval(function(){if(dwSec>0){dwSec--;dwRender();}else{clearInterval(dwInt);dwOn=false;document.getElementById('dw-st').textContent='Session complete!';}},1000);}
 }
-function dwReset(){clearInterval(dwInt);dwOn=false;dwSec=DW_TOT;document.getElementById('dw-btn').textContent='Start';document.getElementById('dw-st').textContent='Ready - 4 hours, no phone';dwRender();}
+function dwReset(){clearInterval(dwInt);dwOn=false;dwSec=DW_TOT;document.getElementById('dw-btn').textContent='Start';document.getElementById('dw-st').textContent='Ready — 4 hours, no phone';dwRender();}
 function dwDone(){clearInterval(dwInt);dwOn=false;dwSec=DW_TOT;S.dw.sessions=Math.min(5,S.dw.sessions+1);save();document.getElementById('dw-btn').textContent='Start';document.getElementById('dw-st').textContent='Session logged!';dwRender();}
 dwRender();
 
-// Helpers
+// HELPERS
 var CK='<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function selAll(el){try{var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}catch(e){}}
 
-// Tags
+// TAGS
 var TAGS={'':{ lbl:'none',cls:''},'u':{lbl:'urgent',cls:'tag-u'},'n':{lbl:'next',cls:'tag-n'},'s':{lbl:'soon',cls:'tag-s'},'l':{lbl:'later',cls:'tag-l'},'p':{lbl:'focus',cls:'tag-p'},'d':{lbl:'done',cls:'tag-d'}};
 function openTagModal(cur,cb){
   var el=document.getElementById('tag-opts');el.innerHTML='';
@@ -400,7 +526,7 @@ function openTagModal(cur,cb){
 }
 function closeModal(){document.getElementById('tag-modal').classList.remove('show');}
 
-// Tasks
+// TASKS
 function renderTasks(tasks,cid,type,onUpdate){
   var con=document.getElementById(cid);if(!con)return;con.innerHTML='';
   for(var i=0;i<tasks.length;i++){
@@ -410,7 +536,7 @@ function renderTasks(tasks,cid,type,onUpdate){
       var tagV=TAGS[t.tag||'']||TAGS[''];
       var tagH=tagV.cls?('<span class="tg2 '+tagV.cls+'">'+tagV.lbl+'</span>'):'<span class="tg2 tag-l" style="opacity:.4">+ tag</span>';
       var row=document.createElement('div');row.className='tr';
-      row.innerHTML='<div class="'+ck+'">'+(t.done?CK:'')+'</div><div class="ti"><div class="tt'+(t.done?' done':'')+'" contenteditable="true" spellcheck="false">'+esc(t.text)+'</div><div class="tn2" contenteditable="true" spellcheck="false">'+esc(t.note)+'</div><div style="margin-top:2px">'+tagH+'</div></div><button class="db">x</button>';
+      row.innerHTML='<div class="'+ck+'">'+(t.done?CK:'')+'</div><div class="ti"><div class="tt'+(t.done?' done':'')+'" contenteditable="true" spellcheck="false">'+esc(t.text)+'</div><div class="tn2" contenteditable="true" spellcheck="false">'+esc(t.note)+'</div><div style="margin-top:2px">'+tagH+'</div></div><button class="db">×</button>';
       row.querySelector('.cb').onclick=function(){tasks[idx].done=!tasks[idx].done;onUpdate();renderTasks(tasks,cid,type,onUpdate);};
       var te=row.querySelector('.tt');
       te.addEventListener('focus',function(){selAll(te);});
@@ -429,7 +555,7 @@ function renderTasks(tasks,cid,type,onUpdate){
   con.appendChild(ab);
 }
 
-// Progress
+// PROGRESS
 function updateProgress(){
   var ad=S.tasksA.filter(function(t){return t.done;}).length,at=S.tasksA.length;
   var bd=S.tasksB.filter(function(t){return t.done;}).length,bt=S.tasksB.length;
@@ -439,17 +565,21 @@ function updateProgress(){
   document.getElementById('pct-b').textContent=bd+'/'+bt;
 }
 
-// Quota
-var QMAX={qa1:CONFIG.qa1.max,qa2:CONFIG.qa2.max,qb1:CONFIG.qb1.max,qb2:CONFIG.qb2.max};
-function renderQ(k){
-  var v=S.quota[k]||0,mx=QMAX[k]||5;
+// QUOTA
+function renderQ(k,mx){
+  var v=S.quota[k]||0;
   var el=document.getElementById('qv-'+k);if(el)el.textContent=v+' / '+mx;
   var fill=document.getElementById('qf-'+k);if(fill)fill.style.width=Math.min(100,Math.round(v/mx*100))+'%';
 }
-function adj(k,d){S.quota[k]=Math.max(0,Math.min(QMAX[k]||50,(S.quota[k]||0)+d));save();renderQ(k);}
-Object.keys(S.quota).forEach(function(k){renderQ(k);});
+function adj(k,d){
+  var mx=S.qmax[k]||10;
+  S.quota[k]=Math.max(0,Math.min(mx,(S.quota[k]||0)+d));
+  save();renderQ(k,mx);
+}
+renderQ('qa1',S.qmax.qa1);renderQ('qa2',S.qmax.qa2);
+renderQ('qb1',S.qmax.qb1);renderQ('qb2',S.qmax.qb2);
 
-// Milestones
+// MILESTONES
 function renderMilestones(ms,cid,type,onUpdate){
   var con=document.getElementById(cid);if(!con)return;con.innerHTML='';
   for(var i=0;i<ms.length;i++){
@@ -459,8 +589,9 @@ function renderMilestones(ms,cid,type,onUpdate){
       var col=type==='a'?'var(--a)':'var(--b)';
       var bg=type==='a'?'var(--a-l)':'var(--b-l)';
       var row=document.createElement('div');row.className='msi';
-      row.innerHTML='<div class="msic" style="background:'+(done?'var(--green-l)':bg)+';color:'+(done?'var(--green)':col)+'">'+(done?'v':'->')+'</div><div class="msb"><div class="mst'+(done?' done':'')+'" contenteditable="true" spellcheck="false">'+esc(item.text)+'</div><div class="mss" contenteditable="true" spellcheck="false">'+esc(item.sub)+'</div></div><div class="cb'+(done?' kg':'')+'">'+( done?CK:'')+'</div>';
+      row.innerHTML='<div class="msic" style="background:'+(done?'var(--green-l)':bg)+';color:'+(done?'var(--green)':col)+'">'+(done?'✓':'→')+'</div><div class="msb"><div class="mst'+(done?' done':'')+'" contenteditable="true" spellcheck="false">'+esc(item.text)+'</div><div class="mss" contenteditable="true" spellcheck="false">'+esc(item.sub)+'</div></div><div class="cb'+(done?' kg':'')+'">'+( done?CK:'')+'</div>';
       var tt=row.querySelector('.mst');
+      tt.addEventListener('focus',function(){selAll(tt);});
       tt.addEventListener('blur',function(){ms[idx].text=tt.textContent.trim()||ms[idx].text;onUpdate();});
       tt.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();tt.blur();}});
       var ss=row.querySelector('.mss');
@@ -479,19 +610,20 @@ function renderMilestones(ms,cid,type,onUpdate){
   con.appendChild(ab);
 }
 
-// Wins
+// WINS
 function renderWins(){
   var el=document.getElementById('wins');if(!el)return;el.innerHTML='';
   for(var i=0;i<S.wins.length;i++){
     (function(idx){
       var row=document.createElement('div');row.className='wi';
-      row.innerHTML='<div class="wd"></div><div class="wt" contenteditable="true" spellcheck="false">'+esc(S.wins[idx])+'</div><button class="db" style="opacity:0.3">x</button>';
+      row.innerHTML='<div class="wd"></div><div class="wt" contenteditable="true" spellcheck="false">'+esc(S.wins[idx])+'</div><button class="db" style="opacity:0.3">×</button>';
       var wt=row.querySelector('.wt');
+      wt.addEventListener('focus',function(){selAll(wt);});
       wt.addEventListener('blur',function(){S.wins[idx]=wt.textContent.trim()||S.wins[idx];save();});
       wt.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();wt.blur();}});
-      row.querySelector('.db').onmouseenter=function(){this.style.opacity='1';};
-      row.querySelector('.db').onmouseleave=function(){this.style.opacity='0.3';};
-      row.querySelector('.db').onclick=function(){S.wins.splice(idx,1);save();renderWins();};
+      var db=row.querySelector('.db');
+      db.onmouseenter=function(){this.style.opacity='1';};db.onmouseleave=function(){this.style.opacity='0.3';};
+      db.onclick=function(){S.wins.splice(idx,1);save();renderWins();};
       el.appendChild(row);
     })(i);
   }
@@ -500,7 +632,7 @@ function renderWins(){
   el.appendChild(ab);
 }
 
-// Horizon
+// HORIZON
 function renderHorizon(){
   var el=document.getElementById('horizon');if(!el)return;el.innerHTML='';
   for(var i=0;i<S.horizon.length;i++){
@@ -509,21 +641,25 @@ function renderHorizon(){
       var col=item.cat==='a'?'var(--a)':item.cat==='b'?'var(--b)':'var(--green)';
       var bg=item.cat==='a'?'var(--a-l)':item.cat==='b'?'var(--b-l)':'var(--green-l)';
       var row=document.createElement('div');row.className='msi';
-      row.innerHTML='<div class="msic" style="background:'+bg+';color:'+col+'">o</div><div class="msb"><div class="mst" contenteditable="true" spellcheck="false">'+esc(item.text)+'</div></div>';
+      row.innerHTML='<div class="msic" style="background:'+bg+';color:'+col+'">◎</div><div class="msb"><div class="mst" contenteditable="true" spellcheck="false">'+esc(item.text)+'</div></div>';
       var tt=row.querySelector('.mst');
+      tt.addEventListener('focus',function(){selAll(tt);});
       tt.addEventListener('blur',function(){S.horizon[idx].text=tt.textContent.trim()||S.horizon[idx].text;save();});
       tt.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();tt.blur();}});
       el.appendChild(row);
     })(i);
   }
+  var ab=document.createElement('button');ab.className='ab';ab.innerHTML='<span class="plus">+</span><span>Add horizon goal</span>';
+  ab.onclick=function(){S.horizon.push({text:'New horizon goal',cat:'life'});save();renderHorizon();};
+  el.appendChild(ab);
 }
 
-// Render all
+// RENDER ALL
 renderTasks(S.top3,'top3','general',function(){save();updateProgress();});
 renderTasks(S.tasksA,'tasks-a','a',function(){save();updateProgress();});
 renderTasks(S.tasksB,'tasks-b','b',function(){save();updateProgress();});
-renderMilestones(S.msA,'ms-a-list','a',function(){save();});
-renderMilestones(S.msB,'ms-b-list','b',function(){save();});
+renderMilestones(S.msA,'ms-a','a',function(){save();});
+renderMilestones(S.msB,'ms-b','b',function(){save();});
 renderWins();
 renderHorizon();
 updateProgress();
@@ -531,7 +667,7 @@ updateProgress();
 // PWA
 var mf={name:"Life OS",short_name:"Life OS",display:"standalone",background_color:"#FAF7F4",theme_color:"#FAF7F4",start_url:".",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%239BBFB8' rx='112'/%3E%3Ctext x='256' y='310' font-family='Georgia,serif' font-size='130' font-style='italic' fill='%23FAF7F4' text-anchor='middle'%3EOS%3C/text%3E%3C/svg%3E",sizes:"any",type:"image/svg+xml"}]};
 var ml=document.createElement('link');ml.rel='manifest';ml.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(mf));document.head.appendChild(ml);
-var sw="self.addEventListener('install',function(e){self.skipWaiting();});self.addEventListener('activate',function(e){self.clients.claim();});self.addEventListener('fetch',function(e){e.respondWith(caches.open('lifeos-tmpl-v2').then(function(c){return c.match(e.request).then(function(r){if(r)return r;return fetch(e.request).then(function(res){if(res&&res.status===200)c.put(e.request,res.clone());return res;});});}));});";
+var sw="self.addEventListener('install',function(e){self.skipWaiting();});self.addEventListener('activate',function(e){self.clients.claim();});self.addEventListener('fetch',function(e){e.respondWith(caches.open('lifeos-tmpl-v3').then(function(c){return c.match(e.request).then(function(r){if(r)return r;return fetch(e.request).then(function(res){if(res&&res.status===200)c.put(e.request,res.clone());return res;});});}));});";
 if('serviceWorker' in navigator){try{var blob=new Blob([sw],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(blob));}catch(e){}}
 var dp;
 window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;document.getElementById('ib').classList.add('show');});
