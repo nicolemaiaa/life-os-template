@@ -26,8 +26,6 @@
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-family:var(--sans);font-size:13px}
 #app{height:100%;display:flex;flex-direction:column}
-
-/* TOP BAR */
 .topbar{padding:calc(var(--st) + 12px) 16px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--bg);border-bottom:0.5px solid var(--border)}
 .logo{display:flex;align-items:center;gap:8px}
 .logo-mark{width:26px;height:26px;border-radius:7px;background:var(--t1);display:flex;align-items:center;justify-content:center}
@@ -36,8 +34,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .topbar-r{text-align:right}
 .top-date{font-size:9px;color:var(--t3);letter-spacing:.07em;text-transform:uppercase}
 .top-day{font-size:9px;color:var(--t2);font-weight:300}
-
-/* TABS */
 .tabs{display:flex;border-bottom:0.5px solid var(--border);flex-shrink:0;background:var(--bg);overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:1;min-width:60px;padding:8px 4px;font-family:var(--sans);font-size:9px;font-weight:500;color:var(--t3);background:none;border:none;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
@@ -45,39 +41,36 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .tab.t1c{color:var(--a);border-bottom-color:var(--a)}
 .tab.t2c{color:var(--b);border-bottom-color:var(--b)}
 .tab.t3c{color:var(--green);border-bottom-color:var(--green)}
-
-/* SCROLL + PANES */
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .scroll::-webkit-scrollbar{display:none}
 .pane{display:none;padding:14px 14px calc(28px + var(--sb))}
 .pane.active{display:block;animation:fadeUp .16s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-
-/* CARDS */
 .card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
 .ct{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--t1);margin-bottom:12px;font-weight:400}
 .ct em{font-style:normal;color:var(--b)}
 .ct.la em{color:var(--a)}
 .sec{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--t3);margin:12px 0 6px}
 .sec:first-child{margin-top:0}
-
-/* SETUP BANNER */
 .setup{background:var(--gold-l);border:0.5px solid rgba(217,169,138,0.35);border-radius:var(--rsm);padding:12px 14px;margin-bottom:10px;font-size:11px;color:var(--t2);line-height:1.7}
-.setup strong{font-weight:500;color:var(--t1);display:block;margin-bottom:4px;font-size:12px}
+.setup strong{font-weight:500;color:var(--t1);display:block;margin-bottom:3px;font-size:12px}
 
-/* COUNTDOWNS */
+/* COUNTDOWNS — fixed equal grid */
 .cds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.cd{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--rsm);padding:12px 10px;text-align:center;overflow:hidden}
+.cd{border:0.5px solid var(--border);border-radius:var(--rsm);padding:12px 10px;text-align:center;position:relative;cursor:pointer}
 .cd.ca{border-color:var(--a-m);background:var(--a-l)}
 .cd.cb{border-color:var(--b-m);background:var(--b-l)}
-.cd-n{font-family:var(--serif);font-size:30px;font-style:italic;font-weight:400;line-height:1;margin-bottom:2px}
+.cd-n{font-family:var(--serif);font-size:30px;font-style:italic;font-weight:400;line-height:1;margin-bottom:3px}
 .cd-n.ca{color:var(--a)}.cd-n.cb{color:var(--b)}
-.cd-lbl{font-size:9px;color:var(--t2);letter-spacing:.05em;text-transform:uppercase;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cd-lbl:focus{background:var(--bg4);color:var(--t1)}
-.cd-dt{font-size:9px;color:var(--t3);margin-top:2px;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
-.cd-dt:focus{background:var(--bg4);color:var(--t1)}
+.cd-name{font-size:9px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;outline:none;cursor:text;border-radius:3px;padding:1px 4px;margin:-1px -4px;display:inline-block}
+.cd-name.ca{color:var(--a)}.cd-name.cb{color:var(--b)}
+.cd-name:focus{background:rgba(255,255,255,0.5);color:var(--t1)}
+.cd-dt{font-size:9px;color:var(--t3);margin-top:3px;display:flex;align-items:center;justify-content:center;gap:4px}
+.cd-dt-lbl{font-size:9px;color:var(--t3)}
+/* Hide the native date input visually but keep it functional */
+.cd-date-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 
-/* DEEP WORK TIMER */
+/* DEEP WORK */
 .dw-wrap{background:var(--bg3);border-radius:var(--rsm);padding:14px;margin-bottom:10px;border:0.5px solid var(--border)}
 .dw-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .dw-lbl{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t1)}
@@ -97,9 +90,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 /* QUOTA */
 .qi{margin-bottom:10px}.qi:last-child{margin-bottom:0}
 .qt{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.ql{font-size:12px;color:var(--t1);outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.ql{font-size:12px;color:var(--t1);outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px;flex:1}
 .ql:focus{background:var(--bg3)}
-.qv{font-size:11px;color:var(--t3)}
+.qv{font-size:11px;color:var(--t3);flex-shrink:0;margin-left:8px}
 .qtr{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
 .qf{height:100%;border-radius:3px;transition:width .3s}
 .qfa{background:var(--a)}.qfb{background:var(--b)}
@@ -153,13 +146,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .wt:focus{background:var(--bg3);color:var(--t1)}
 
 /* THESIS */
-.thesis{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t2);line-height:1.8;outline:none;cursor:text;border-radius:4px;padding:2px 4px;margin:-2px -4px;min-height:48px}
+.thesis{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--t2);line-height:1.8;outline:none;cursor:text;border-radius:4px;padding:2px 4px;margin:-2px -4px;min-height:48px;display:block}
 .thesis:focus{background:var(--bg3);color:var(--t1)}
 
 /* PROGRESS */
 .prog-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
 .prog-row:last-child{margin-bottom:0}
-.prog-lbl{font-size:11px;min-width:64px;font-weight:300;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.prog-lbl{font-size:11px;min-width:60px;font-weight:300;outline:none;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px;white-space:nowrap;overflow:hidden}
 .prog-lbl:focus{background:var(--bg3)}
 .prog-track{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}
 .prog-fill{height:100%;border-radius:2px;transition:width .35s}
@@ -213,19 +206,26 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 
     <div class="setup">
       <strong>Welcome to your Life OS</strong>
-      Everything on this page is editable — tap any text to change it. Rename the tabs, set your deadlines, replace the tasks. Your changes save automatically.
+      Tap any text to edit it — goal names, tasks, milestones, everything. Tap a countdown card to set a deadline with a date picker. Changes save automatically.
     </div>
 
+    <!-- Countdowns with native date picker -->
     <div class="cds">
-      <div class="cd ca">
+      <div class="cd ca" onclick="document.getElementById('dp-a').showPicker&&document.getElementById('dp-a').showPicker()">
+        <input type="date" id="dp-a" class="cd-date-input" onchange="setDeadline('a',this.value)">
         <div class="cd-n ca" id="cd-a">--</div>
-        <div class="cd-lbl" id="cd-a-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('goalAName',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal A</div>
-        <div class="cd-dt" id="cd-a-dt" contenteditable="true" spellcheck="false" onblur="saveDeadline('a',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Format: YYYY-MM-DD">tap to set date</div>
+        <div class="cd-name ca" id="cd-a-name" contenteditable="true" spellcheck="false"
+          onblur="saveGoalName('a',this)" onclick="event.stopPropagation()"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal A</div>
+        <div class="cd-dt"><span class="cd-dt-lbl" id="cd-a-dt">tap to set deadline</span></div>
       </div>
-      <div class="cd cb">
+      <div class="cd cb" onclick="document.getElementById('dp-b').showPicker&&document.getElementById('dp-b').showPicker()">
+        <input type="date" id="dp-b" class="cd-date-input" onchange="setDeadline('b',this.value)">
         <div class="cd-n cb" id="cd-b">--</div>
-        <div class="cd-lbl" id="cd-b-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('goalBName',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal B</div>
-        <div class="cd-dt" id="cd-b-dt" contenteditable="true" spellcheck="false" onblur="saveDeadline('b',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" title="Format: YYYY-MM-DD">tap to set date</div>
+        <div class="cd-name cb" id="cd-b-name" contenteditable="true" spellcheck="false"
+          onblur="saveGoalName('b',this)" onclick="event.stopPropagation()"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal B</div>
+        <div class="cd-dt"><span class="cd-dt-lbl" id="cd-b-dt">tap to set deadline</span></div>
       </div>
     </div>
 
@@ -249,12 +249,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
     <div class="card">
       <div class="ct">Weekly <em>progress</em></div>
       <div class="prog-row">
-        <div class="prog-lbl" id="plbl-a" style="color:var(--a)" contenteditable="true" spellcheck="false" onblur="saveConfig('goalAName',this);syncLabels()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal A</div>
+        <div class="prog-lbl" id="plbl-a" style="color:var(--a)" contenteditable="true" spellcheck="false"
+          onblur="saveGoalName('a',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal A</div>
         <div class="prog-track"><div class="prog-fill pfa" id="prog-a" style="width:0%"></div></div>
         <span class="prog-ct" id="pct-a">0/0</span>
       </div>
       <div class="prog-row">
-        <div class="prog-lbl" id="plbl-b" style="color:var(--b)" contenteditable="true" spellcheck="false" onblur="saveConfig('goalBName',this);syncLabels()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal B</div>
+        <div class="prog-lbl" id="plbl-b" style="color:var(--b)" contenteditable="true" spellcheck="false"
+          onblur="saveGoalName('b',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Goal B</div>
         <div class="prog-track"><div class="prog-fill pfb" id="prog-b" style="width:0%"></div></div>
         <span class="prog-ct" id="pct-b">0/0</span>
       </div>
@@ -268,19 +270,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
       <div class="ct la">Weekly <em>quota</em></div>
       <div class="qi">
         <div class="qt">
-          <span class="ql" id="qa1-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qa1lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 1</span>
+          <span class="ql" id="qa1-lbl" contenteditable="true" spellcheck="false"
+            onblur="saveCfg('qa1lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 1</span>
           <span class="qv" id="qv-qa1">0 / 5</span>
         </div>
         <div class="qtr"><div class="qf qfa" id="qf-qa1" style="width:0%"></div></div>
-        <div class="qbtns"><div class="qbtn" onclick="adj('qa1',-1)">−</div><div class="qbtn pa" onclick="adj('qa1',1)">+ add</div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qa1',-1,5)">−</div><div class="qbtn pa" onclick="adj('qa1',1,5)">+ add</div></div>
       </div>
       <div class="qi" style="margin-bottom:0">
         <div class="qt">
-          <span class="ql" id="qa2-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qa2lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 2</span>
+          <span class="ql" id="qa2-lbl" contenteditable="true" spellcheck="false"
+            onblur="saveCfg('qa2lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 2</span>
           <span class="qv" id="qv-qa2">0 / 5</span>
         </div>
         <div class="qtr"><div class="qf qfa" id="qf-qa2" style="width:0%"></div></div>
-        <div class="qbtns"><div class="qbtn" onclick="adj('qa2',-1)">−</div><div class="qbtn pa" onclick="adj('qa2',1)">+ add</div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qa2',-1,5)">−</div><div class="qbtn pa" onclick="adj('qa2',1,5)">+ add</div></div>
       </div>
     </div>
     <div class="card">
@@ -299,19 +303,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
       <div class="ct">Weekly <em>quota</em></div>
       <div class="qi">
         <div class="qt">
-          <span class="ql" id="qb1-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qb1lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 1</span>
+          <span class="ql" id="qb1-lbl" contenteditable="true" spellcheck="false"
+            onblur="saveCfg('qb1lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 1</span>
           <span class="qv" id="qv-qb1">0 / 3</span>
         </div>
         <div class="qtr"><div class="qf qfb" id="qf-qb1" style="width:0%"></div></div>
-        <div class="qbtns"><div class="qbtn" onclick="adj('qb1',-1)">−</div><div class="qbtn pb" onclick="adj('qb1',1)">+ add</div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qb1',-1,3)">−</div><div class="qbtn pb" onclick="adj('qb1',1,3)">+ add</div></div>
       </div>
       <div class="qi" style="margin-bottom:0">
         <div class="qt">
-          <span class="ql" id="qb2-lbl" contenteditable="true" spellcheck="false" onblur="saveConfig('qb2lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 2</span>
+          <span class="ql" id="qb2-lbl" contenteditable="true" spellcheck="false"
+            onblur="saveCfg('qb2lbl',this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">Metric 2</span>
           <span class="qv" id="qv-qb2">0 / 1</span>
         </div>
         <div class="qtr"><div class="qf qfb" id="qf-qb2" style="width:0%"></div></div>
-        <div class="qbtns"><div class="qbtn" onclick="adj('qb2',-1)">−</div><div class="qbtn pb" onclick="adj('qb2',1)">+ add</div></div>
+        <div class="qbtns"><div class="qbtn" onclick="adj('qb2',-1,1)">−</div><div class="qbtn pb" onclick="adj('qb2',1,1)">+ add</div></div>
       </div>
     </div>
     <div class="card">
@@ -332,7 +338,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
     </div>
     <div class="card">
       <div class="ct"><em>The thesis</em></div>
-      <div class="thesis" id="thesis" contenteditable="true" spellcheck="false" onblur="saveConfig('thesis',this)" onkeydown="if(event.key==='Enter'&&event.shiftKey){event.preventDefault();this.blur()}">Write your thesis here — the one sentence that explains why both goals are worth it at the same time.</div>
+      <div class="thesis" id="thesis" contenteditable="true" spellcheck="false"
+        onblur="saveCfg('thesis',this)"
+        onkeydown="if(event.key==='Enter'&&event.shiftKey){event.preventDefault();this.blur()}">Write your thesis here — the one sentence that explains why both goals are worth it at the same time.</div>
     </div>
     <div class="card">
       <div class="ct">On the <em>horizon</em></div>
@@ -386,13 +394,11 @@ var DEF={
     {text:'Something personal you want to have done',cat:'life'},
   ],
   quota:{qa1:0,qa2:0,qb1:0,qb2:0},
-  qmax:{qa1:5,qa2:5,qb1:3,qb2:1},
   milestones:{},
   dw:{sessions:0,date:''},
-  config:{
+  cfg:{
     goalAName:'Goal A',goalBName:'Goal B',
     deadlineA:'',deadlineB:'',
-    deadlineADt:'tap to set date',deadlineBDt:'tap to set date',
     qa1lbl:'Metric 1',qa2lbl:'Metric 2',
     qb1lbl:'Metric 1',qb2lbl:'Metric 2',
     thesis:'Write your thesis here — the one sentence that explains why both goals are worth it at the same time.',
@@ -400,7 +406,8 @@ var DEF={
 };
 
 var S=JSON.parse(localStorage.getItem(KEY)||'null')||JSON.parse(JSON.stringify(DEF));
-if(!S.config)S.config=JSON.parse(JSON.stringify(DEF.config));
+if(!S.cfg)S.cfg=JSON.parse(JSON.stringify(DEF.cfg));
+if(!S.milestones)S.milestones={};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
 
 // DATES
@@ -410,75 +417,76 @@ var MONS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec
 document.getElementById('top-date').textContent=now.getDate()+' '+MONS[now.getMonth()]+' '+now.getFullYear();
 document.getElementById('top-day').textContent=DAYS[now.getDay()];
 
-function daysUntil(dateStr){
-  if(!dateStr)return null;
-  var parts=dateStr.split('-');
-  if(parts.length!==3)return null;
-  var d=new Date(parseInt(parts[0]),parseInt(parts[1])-1,parseInt(parts[2]));
-  var diff=Math.ceil((d-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
-  return Math.max(0,diff);
+function daysUntil(iso){
+  if(!iso)return null;
+  var p=iso.split('-');if(p.length!==3)return null;
+  var d=new Date(+p[0],+p[1]-1,+p[2]);
+  return Math.max(0,Math.ceil((d-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5));
+}
+function fmtDate(iso){
+  if(!iso)return 'tap to set deadline';
+  var p=iso.split('-');
+  var d=new Date(+p[0],+p[1]-1,+p[2]);
+  return d.getDate()+' '+MONS[d.getMonth()]+' '+p[0];
 }
 function updateCountdowns(){
-  var da=daysUntil(S.config.deadlineA);
+  var da=daysUntil(S.cfg.deadlineA);
   document.getElementById('cd-a').textContent=da!==null?da:'--';
-  var db=daysUntil(S.config.deadlineB);
+  document.getElementById('cd-a-dt').textContent=fmtDate(S.cfg.deadlineA);
+  var db=daysUntil(S.cfg.deadlineB);
   document.getElementById('cd-b').textContent=db!==null?db:'--';
+  document.getElementById('cd-b-dt').textContent=fmtDate(S.cfg.deadlineB);
 }
 
-// SAVE CONFIG
-function saveConfig(key,el){
-  S.config[key]=el.textContent.trim();
-  save();
-  syncLabels();
-}
-function saveDeadline(goal,el){
-  var val=el.textContent.trim();
-  // accept YYYY-MM-DD or DD/MM/YYYY or plain text
-  if(goal==='a'){S.config.deadlineA=val;S.config.deadlineADt=val;}
-  else{S.config.deadlineB=val;S.config.deadlineBDt=val;}
+function setDeadline(goal,val){
+  if(goal==='a')S.cfg.deadlineA=val;
+  else S.cfg.deadlineB=val;
   save();updateCountdowns();
 }
-function syncLabels(){
-  var an=S.config.goalAName||'Goal A';
-  var bn=S.config.goalBName||'Goal B';
-  // tab labels
+
+function saveGoalName(goal,el){
+  var name=el.textContent.trim()||('Goal '+goal.toUpperCase());
+  if(goal==='a')S.cfg.goalAName=name;
+  else S.cfg.goalBName=name;
+  save();syncAllLabels();
+}
+function saveCfg(key,el){S.cfg[key]=el.textContent.trim();save();}
+
+function syncAllLabels(){
+  var an=S.cfg.goalAName||'Goal A', bn=S.cfg.goalBName||'Goal B';
   document.getElementById('tab-1').textContent=an;
   document.getElementById('tab-2').textContent=bn;
-  // countdown labels
-  var cla=document.getElementById('cd-a-lbl');if(cla&&document.activeElement!==cla)cla.textContent=an;
-  var clb=document.getElementById('cd-b-lbl');if(clb&&document.activeElement!==clb)clb.textContent=bn;
-  // progress labels
-  var pa=document.getElementById('plbl-a');if(pa&&document.activeElement!==pa)pa.textContent=an;
-  var pb=document.getElementById('plbl-b');if(pb&&document.activeElement!==pb)pb.textContent=bn;
-  // quota labels
-  var q;
-  q=document.getElementById('qa1-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qa1lbl||'Metric 1';
-  q=document.getElementById('qa2-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qa2lbl||'Metric 2';
-  q=document.getElementById('qb1-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qb1lbl||'Metric 1';
-  q=document.getElementById('qb2-lbl');if(q&&document.activeElement!==q)q.textContent=S.config.qb2lbl||'Metric 2';
-  // thesis
-  var th=document.getElementById('thesis');if(th&&document.activeElement!==th)th.textContent=S.config.thesis||DEF.config.thesis;
+  var e;
+  e=document.getElementById('cd-a-name');if(e&&document.activeElement!==e)e.textContent=an;
+  e=document.getElementById('cd-b-name');if(e&&document.activeElement!==e)e.textContent=bn;
+  e=document.getElementById('plbl-a');if(e&&document.activeElement!==e)e.textContent=an;
+  e=document.getElementById('plbl-b');if(e&&document.activeElement!==e)e.textContent=bn;
+  e=document.getElementById('qa1-lbl');if(e&&document.activeElement!==e)e.textContent=S.cfg.qa1lbl||'Metric 1';
+  e=document.getElementById('qa2-lbl');if(e&&document.activeElement!==e)e.textContent=S.cfg.qa2lbl||'Metric 2';
+  e=document.getElementById('qb1-lbl');if(e&&document.activeElement!==e)e.textContent=S.cfg.qb1lbl||'Metric 1';
+  e=document.getElementById('qb2-lbl');if(e&&document.activeElement!==e)e.textContent=S.cfg.qb2lbl||'Metric 2';
+  e=document.getElementById('thesis');if(e&&document.activeElement!==e)e.textContent=S.cfg.thesis||DEF.cfg.thesis;
 }
 
-// RESTORE CONFIG
-function restoreConfig(){
-  var c=S.config;
+// RESTORE
+function restore(){
+  var c=S.cfg;
   document.getElementById('tab-1').textContent=c.goalAName||'Goal A';
   document.getElementById('tab-2').textContent=c.goalBName||'Goal B';
-  document.getElementById('cd-a-lbl').textContent=c.goalAName||'Goal A';
-  document.getElementById('cd-b-lbl').textContent=c.goalBName||'Goal B';
-  document.getElementById('cd-a-dt').textContent=c.deadlineADt||'tap to set date';
-  document.getElementById('cd-b-dt').textContent=c.deadlineBDt||'tap to set date';
+  document.getElementById('cd-a-name').textContent=c.goalAName||'Goal A';
+  document.getElementById('cd-b-name').textContent=c.goalBName||'Goal B';
   document.getElementById('plbl-a').textContent=c.goalAName||'Goal A';
   document.getElementById('plbl-b').textContent=c.goalBName||'Goal B';
   document.getElementById('qa1-lbl').textContent=c.qa1lbl||'Metric 1';
   document.getElementById('qa2-lbl').textContent=c.qa2lbl||'Metric 2';
   document.getElementById('qb1-lbl').textContent=c.qb1lbl||'Metric 1';
   document.getElementById('qb2-lbl').textContent=c.qb2lbl||'Metric 2';
-  document.getElementById('thesis').textContent=c.thesis||DEF.config.thesis;
+  document.getElementById('thesis').textContent=c.thesis||DEF.cfg.thesis;
+  if(c.deadlineA)document.getElementById('dp-a').value=c.deadlineA;
+  if(c.deadlineB)document.getElementById('dp-b').value=c.deadlineB;
   updateCountdowns();
 }
-restoreConfig();
+restore();
 
 // TABS
 var TCLS=['t0','t1c','t2c','t3c'];
@@ -571,13 +579,8 @@ function renderQ(k,mx){
   var el=document.getElementById('qv-'+k);if(el)el.textContent=v+' / '+mx;
   var fill=document.getElementById('qf-'+k);if(fill)fill.style.width=Math.min(100,Math.round(v/mx*100))+'%';
 }
-function adj(k,d){
-  var mx=S.qmax[k]||10;
-  S.quota[k]=Math.max(0,Math.min(mx,(S.quota[k]||0)+d));
-  save();renderQ(k,mx);
-}
-renderQ('qa1',S.qmax.qa1);renderQ('qa2',S.qmax.qa2);
-renderQ('qb1',S.qmax.qb1);renderQ('qb2',S.qmax.qb2);
+function adj(k,d,mx){S.quota[k]=Math.max(0,Math.min(mx,(S.quota[k]||0)+d));save();renderQ(k,mx);}
+renderQ('qa1',5);renderQ('qa2',5);renderQ('qb1',3);renderQ('qb2',1);
 
 // MILESTONES
 function renderMilestones(ms,cid,type,onUpdate){
@@ -597,11 +600,7 @@ function renderMilestones(ms,cid,type,onUpdate){
       var ss=row.querySelector('.mss');
       ss.addEventListener('blur',function(){ms[idx].sub=ss.textContent.trim();onUpdate();});
       ss.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ss.blur();}});
-      row.querySelector('.cb').onclick=function(){
-        if(!S.milestones)S.milestones={};
-        S.milestones[ms[idx].id]=!S.milestones[ms[idx].id];
-        save();renderMilestones(ms,cid,type,onUpdate);
-      };
+      row.querySelector('.cb').onclick=function(){S.milestones[ms[idx].id]=!S.milestones[ms[idx].id];save();renderMilestones(ms,cid,type,onUpdate);};
       con.appendChild(row);
     })(i);
   }
@@ -660,17 +659,14 @@ renderTasks(S.tasksA,'tasks-a','a',function(){save();updateProgress();});
 renderTasks(S.tasksB,'tasks-b','b',function(){save();updateProgress();});
 renderMilestones(S.msA,'ms-a','a',function(){save();});
 renderMilestones(S.msB,'ms-b','b',function(){save();});
-renderWins();
-renderHorizon();
-updateProgress();
+renderWins();renderHorizon();updateProgress();
 
 // PWA
 var mf={name:"Life OS",short_name:"Life OS",display:"standalone",background_color:"#FAF7F4",theme_color:"#FAF7F4",start_url:".",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%239BBFB8' rx='112'/%3E%3Ctext x='256' y='310' font-family='Georgia,serif' font-size='130' font-style='italic' fill='%23FAF7F4' text-anchor='middle'%3EOS%3C/text%3E%3C/svg%3E",sizes:"any",type:"image/svg+xml"}]};
 var ml=document.createElement('link');ml.rel='manifest';ml.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(mf));document.head.appendChild(ml);
 var sw="self.addEventListener('install',function(e){self.skipWaiting();});self.addEventListener('activate',function(e){self.clients.claim();});self.addEventListener('fetch',function(e){e.respondWith(caches.open('lifeos-tmpl-v3').then(function(c){return c.match(e.request).then(function(r){if(r)return r;return fetch(e.request).then(function(res){if(res&&res.status===200)c.put(e.request,res.clone());return res;});});}));});";
 if('serviceWorker' in navigator){try{var blob=new Blob([sw],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(blob));}catch(e){}}
-var dp;
-window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;document.getElementById('ib').classList.add('show');});
+var dp;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;document.getElementById('ib').classList.add('show');});
 function installPWA(){if(dp){dp.prompt();dp=null;}document.getElementById('ib').classList.remove('show');}
 </script>
 </body>
