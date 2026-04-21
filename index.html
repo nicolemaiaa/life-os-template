@@ -57,11 +57,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 
 /* COUNTDOWNS - same pattern as working dashboard */
 .cds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.cd{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--rsm);padding:12px;text-align:center}
-.cd.ca{border-color:var(--a-m);background:var(--a-l)}
-.cd.cb{border-color:var(--b-m);background:var(--b-l)}
+.cd{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--rsm);padding:12px;text-align:center;position:relative}
+.cd.cda{border-color:var(--a-m);background:var(--a-l)}
+.cd.cdb{border-color:var(--b-m);background:var(--b-l)}
 .cd-n{font-family:var(--serif);font-size:32px;font-style:italic;font-weight:400;line-height:1}
-.cd-n.ca{color:var(--a)}.cd-n.cb{color:var(--b)}
+.cd-n.cda{color:var(--a)}.cd-n.cdb{color:var(--b)}
 .cd-lbl{font-size:9px;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .cd-dt{font-size:9px;color:var(--t3);margin-top:3px;cursor:pointer}
 
@@ -201,8 +201,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 
     <!-- Countdowns - exact same pattern as working personal dashboard -->
     <div class="cds">
-      <div class="cd ca"><div class="cd-n ca" id="cd-a">--</div><div class="cd-lbl">Goal A</div><div class="cd-dt" id="dt-a">31 Dec 2026</div></div>
-      <div class="cd cb"><div class="cd-n cb" id="cd-b">--</div><div class="cd-lbl">Goal B</div><div class="cd-dt" id="dt-b">30 Jun 2027</div></div>
+      <div class="cd cda">
+        <div class="cd-n cda" id="cd-a">--</div>
+        <div class="cd-lbl" id="lbl-a">Goal A</div>
+        <div class="cd-dt" id="dt-a" style="cursor:pointer">tap to set date</div>
+        <input type="date" id="dp-a" onchange="setDeadline('a',this.value)" style="position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;cursor:pointer">
+      </div>
+      <div class="cd cdb">
+        <div class="cd-n cdb" id="cd-b">--</div>
+        <div class="cd-lbl" id="lbl-b">Goal B</div>
+        <div class="cd-dt" id="dt-b" style="cursor:pointer">tap to set date</div>
+        <input type="date" id="dp-b" onchange="setDeadline('b',this.value)" style="position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;cursor:pointer">
+      </div>
     </div>
 
     <!-- Deep work timer -->
@@ -369,10 +379,21 @@ function fmtDate(str){
   if(isNaN(d))return 'tap to set date';
   return d.getDate()+' '+MONS[d.getMonth()]+' '+d.getFullYear();
 }
-// Edit these two lines to set your deadlines:
-document.getElementById('cd-a').textContent=dTo(2026,12,31);
-document.getElementById('cd-b').textContent=dTo(2027,6,30);
-function updateCDs(){}
+function setDeadline(g,v){
+  if(g==='a')S.f.deadA=v; else S.f.deadB=v;
+  save(); updateCDs();
+}
+function updateCDs(){
+  var MONS2=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmt(s){if(!s)return 'tap to set date';var d=new Date(s+'T00:00:00');if(isNaN(d))return 'tap to set date';return d.getDate()+' '+MONS2[d.getMonth()]+' '+d.getFullYear();}
+  function days(s){if(!s)return '--';var d=new Date(s+'T00:00:00');if(isNaN(d))return '--';return Math.max(0,Math.ceil((d-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5));}
+  document.getElementById('cd-a').textContent=days(S.f.deadA);
+  document.getElementById('cd-b').textContent=days(S.f.deadB);
+  document.getElementById('dt-a').textContent=fmt(S.f.deadA);
+  document.getElementById('dt-b').textContent=fmt(S.f.deadB);
+  if(S.f.deadA)document.getElementById('dp-a').value=S.f.deadA;
+  if(S.f.deadB)document.getElementById('dp-b').value=S.f.deadB;
+}
 
 // SAVE FIELD
 function saveF(k,el){S.f[k]=el.textContent.trim();save();syncNames();}
