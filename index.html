@@ -64,6 +64,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
 .cd-n.cda{color:var(--a)}.cd-n.cdb{color:var(--b)}
 .cd-lbl{font-size:9px;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
 .cd-dt{font-size:9px;color:var(--t3);margin-top:3px;cursor:pointer}
+.cd-date{margin-top:4px;font-size:9px;color:var(--t3);background:none;border:none;outline:none;font-family:var(--sans);cursor:pointer;width:100%;text-align:center;-webkit-appearance:none}
 
 /* DEEP WORK */
 .dw-wrap{background:var(--bg3);border-radius:var(--rsm);padding:14px;margin-bottom:10px;border:0.5px solid var(--border)}
@@ -199,21 +200,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-
       Tap any text to edit it. Everything saves automatically.
     </div>
 
-    <!-- Countdowns - exact same pattern as working personal dashboard -->
+    <!-- Countdowns -->
     <div class="cds">
-      <div class="cd cda" onclick="pickDate('a')" style="cursor:pointer">
+      <div class="cd cda">
         <div class="cd-n cda" id="cd-a">--</div>
         <div class="cd-lbl" id="lbl-a">Goal A</div>
         <div class="cd-dt" id="dt-a">tap to set date</div>
+        <input type="date" class="cd-date" id="dp-a" onchange="setDeadline('a',this.value)">
       </div>
-      <div class="cd cdb" onclick="pickDate('b')" style="cursor:pointer">
+      <div class="cd cdb">
         <div class="cd-n cdb" id="cd-b">--</div>
         <div class="cd-lbl" id="lbl-b">Goal B</div>
         <div class="cd-dt" id="dt-b">tap to set date</div>
+        <input type="date" class="cd-date" id="dp-b" onchange="setDeadline('b',this.value)">
       </div>
     </div>
-    <input type="date" id="dp-a" onchange="setDeadline('a',this.value)" style="display:none">
-    <input type="date" id="dp-b" onchange="setDeadline('b',this.value)" style="display:none">
 
     <!-- Deep work timer -->
     <div class="dw-wrap">
